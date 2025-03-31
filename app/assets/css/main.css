@@ -1,0 +1,17 @@
+@import "tailwindcss" theme(static);
+@import "@nuxt/ui-pro";
+
+@theme static {
+  --font-sans: 'Inter', sans-serif;
+  --ui-primary: #5546ff;
+  --ui-secondary: var(--color-stone-400);
+  --ui-text: var(--ui-color-gray-700);
+  --color-gray-150: #ebebeb;
+  --ui-border-accented: var(--color-gray-300);
+}
+
+body {
+  background: #f4f3f1;
+  font-size: 14px;
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+}
