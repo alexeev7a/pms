@@ -103,6 +103,17 @@ Card(
   .flex.gap-2.mb-3.items-center
     UButton(trailing-icon="i-lucide-external-link" variant="ghost") Внешняя ссылка
     .text-gray-400 trailing-icon="i-lucide-external-link", variant="ghost"
+
+
+
+  UAlert(
+    title="Heads up!"
+    description="You can change the primary color in your app config."
+    color="neutral"
+    variant="outline"
+    close
+    )
+
 </template>
 
 <script setup>

@@ -2,7 +2,8 @@ export default defineAppConfig({
   ui: {
     colors: {
       //primary: 'green',
-      neutral: 'zinc'
+      neutral: 'gray',
+      secondary: 'stone',
     },
     icons: {
       loading: 'i-lucide-loader-circle',
@@ -20,6 +21,26 @@ export default defineAppConfig({
         size: 'lg',
       }
     },
+    select: {
+      slots: {
+        base: 'cursor-pointer',
+        value: 'font-semibold text-gray-500',
+      },
+      defaultVariants: {
+        size: 'lg',
+        color: 'neutral',
+      }
+    },
+    selectMenu: {
+      slots: {
+        base: 'cursor-pointer',
+        value: 'font-semibold text-gray-500',
+      },
+      defaultVariants: {
+        size: 'lg',
+        //color: 'neutral',
+      }
+    },
     button: {
       slots: {
         base: 'font-semibold disabled:opacity-50 cursor-pointer',
@@ -32,6 +53,12 @@ export default defineAppConfig({
           }
         },
       },
+      compoundVariants: [
+        {
+          color: 'neutral',
+          class: 'text-gray-500',
+        },
+      ],
       defaultVariants: {
         size: 'lg',
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-2xl p-4 shadow-2xs">
+  <Card shadowClass="shadow-xs">
     <div class="flex gap-2 pb-2 mb-2 border-bottom border-b border-solid border-gray-200">
       <USelectMenu v-model="rates" :items="ratesItems" valueKey="id" :searchInput="false" multiple class="w-48" placeholder="Тарифы" />
       <USelectMenu v-model="categories" :items="categoriesItems" valueKey="id" :searchInput="false" multiple class="w-48" placeholder="Категории номеров" />
@@ -188,7 +188,7 @@
         </div>
       </template>
     </UDrawer>
-  </div>
+  </Card>
 
 </template>
 

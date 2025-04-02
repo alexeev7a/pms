@@ -5,7 +5,7 @@
   --font-sans: 'Inter', sans-serif;
   --ui-primary: #5546ff;
   --ui-secondary: var(--color-stone-400);
-  --ui-text: var(--ui-color-gray-700);
+  --ui-text: var(--ui-color-gray-400);
   --color-gray-150: #ebebeb;
   --ui-border-accented: var(--color-gray-300);
 }

@@ -1,6 +1,6 @@
 <template>
   <div :class="[sizeClass[size], bgColor, shadowClass]">
-    <div :class="headerClass[size]">
+    <div v-if="title || description" :class="headerClass[size]">
       <div v-if="title" class="font-semibold" :class="titleClass[size]">{{ title }}</div>
       <div v-if="description" class="text-gray-400" :class="descClass[size]">{{ description }}</div>
     </div>
