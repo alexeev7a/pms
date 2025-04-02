@@ -7,9 +7,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/device',
   ],
-  ui: {
-    colorMode: false
-  },
 
   vite: {
     css: {
@@ -28,6 +25,10 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+  ui: {
+    colorMode: false,
+  },
+  colorMode: false,
 
   routeRules: {
     '/api/**': {
