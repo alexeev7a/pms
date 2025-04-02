@@ -61,8 +61,10 @@ Card(shadowClass="shadow-xs")
       )
 
 
-  .flex.tabular-nums.whitespace-nowrap
-    .column.border-r.border-gray-200.pr-2
+
+  .container.flex.tabular-nums.whitespace-nowrap.overflow-y-auto
+    .column.border-r.border-gray-200.pr-2.sticky.z-1.left-0.bg-white
+      .min-h-9
       .row.flex(
         v-for="row in rows"
         :key="`title_${row.id || row.label}`"
@@ -86,6 +88,11 @@ Card(shadowClass="shadow-xs")
             template(v-else) {{ child.label }}
 
     .column.pl-2
+      .row.flex.sticky.top-0.bg-white
+        .day.p-2(
+          v-for="column in columns"
+          :key="`col_${column.key}`"
+        ) {{ column.title }}
       .row(
         v-for="row in rows"
         :key="`row_${row.id || row.label}`"
@@ -97,25 +104,26 @@ Card(shadowClass="shadow-xs")
         )
           template(v-if="child.children")
             .row.flex(
-              v-for="child in child.children || []"
+              v-for="child in child.children"
               :key="`row_${child.id || child.label}`"
             )
               .day.p-2(
-                v-for="(day, key) in dateRange"
-                :key
-              ) {{ key }} - {{ format(day, 'd MMM') }}
+                v-for="column in columns"
+                :key="`col_${child.id || child.label}_${column.key}`"
+              )
           template(v-else)
             .day.p-2(
-              v-for="(day, key) in dateRange"
-              :key
-            ) {{ key }} - {{ format(day, 'd MMM') }}
+              v-for="column in columns"
+              :key="`col_${child.id || child.label}_${column.key}`"
+            )
 
 </template>
 
 <script setup>
 //import DatePicker from "~/components/DatePicker.vue";
 
-import {add, eachDayOfInterval, format, sub} from "date-fns";
+import { add, eachDayOfInterval, format, getDay, isSameDay, startOfMonth, sub } from "date-fns"
+import locale from "date-fns/locale/ru"
 
 definePageMeta({
   title: 'Бронирования'
@@ -224,18 +232,46 @@ const range = shallowRef({
   end: add(date.value, { days: 30 }),
 })
 
-const dateRange = computed(() => {
-  return eachDayOfInterval({ start: range.value.start, end: range.value.end })
+const dateRange = computed(() => eachDayOfInterval({ start: range.value.start, end: range.value.end }))
+
+const columns = computed(() => {
+  const result = []
+  dateRange.value.forEach((item) => {
+    //const isFirstDayMonth = isSameDay(date, startOfMonth(date))
+    //const isCurrDay = isSameDay(currDay, date)
+    result.push({
+      key: format(item, 'dd_MM_yy'),
+      title: format(item, 'eeeeee d', { locale }),
+      date: item,
+      /*subtitle: isFirstDayMonth ? format(date, 'd MMMM', { locale }) : format(date, 'dd.MM.yy'),
+      subtitleClass: { 'text-gray-500': isFirstDayMonth || isCurrDay, 'font-semibold': isCurrDay },
+      day: getDay(date),
+      date,
+      slot: 'price',
+      class: 'text-right',
+      align: 'right',*/
+    })
+  })
+  return result
 })
 
 </script>
 
 <style scoped lang="scss">
+.container {
+  max-height: calc(100vh - var(--ui-header-height) - 64px - 64px - 16px);
+}
+
 .vertical-title {
   writing-mode: sideways-lr;
 }
 
 .row {
   box-shadow: 0 1px 0 0 var(--color-gray-200);
+}
+
+.day {
+  min-height: 36px;
+  min-width: 100px;
 }
 </style>

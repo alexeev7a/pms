@@ -25,10 +25,10 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-  ui: {
-    colorMode: false,
+
+  colorMode: {
+    preference: 'light',
   },
-  colorMode: false,
 
   routeRules: {
     '/api/**': {
